@@ -1,6 +1,7 @@
 """
 Quick Sort Algorithm
 Method1:  Choose the last element to be the pivot
+worst Case O(n^2), best case O(nlogn)
 
 """
 def main(arr):
@@ -24,7 +25,3 @@ def partition(arr, left, right):
 			i += 1
 	arr[i], arr[right] = arr[right], arr[i]
 	return i
-
-"""
-Method2:  Optimize, find the optimal pivot point. 
-"""
