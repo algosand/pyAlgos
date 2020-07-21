@@ -5,13 +5,41 @@ Implementation of fenwick trees or Binary Indexed Tree (BIT)
 class NumArray:
 
     def __init__(self, num):
-    	self.arr = num
+        if not num:
+            return
+        self.arr = num
+        self.bit = [0] + num
+        for i in range(1, len(self.bit)):
+            j = i + (i & -i)
+            if j < len(self.bit):
+                self.bit[j] += self.bit[i]
+        
 
     def update(self, i, val):
+        inc = val - self.arr[i]
+        self.arr[i] = val
+        i += 1
+        while i < len(self.bit):
+            self.bit[i] += inc
+            i += (i & -i)
+            
+    def prefixSum(self, i):
+        res = 0
+        while i:
+            res += self.bit[i]
+            i -= (i & -i)
+        return res
         
-
     def sumRange(self, i, j):
-        
+        return self.prefixSum(j + 1) - self.prefixSum(i)
+
+
+if __name__ == '__main__':
+	arr = NumArray([-1])
+	print(arr.sumRange(0,0))
+	arr.update(0, 1)
+	print(arr.sumRange(0,0))
+
 
 """
 start time: 6:46PM
@@ -40,6 +68,3 @@ arr[2] - arr[1] = 5
 
 
 
-
-if __name__ == '__main__':
-	
