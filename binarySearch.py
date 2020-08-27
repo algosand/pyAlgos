@@ -71,6 +71,85 @@ def find_right(x,A):
 	else:
 		return -1
 
+"""
+A problem on leetcode that shows good use of bisect module for a binary search, 
+and the case of FFFFFTTTT
+https://leetcode.com/problems/find-right-interval/
+
+"""
+def findRightInterval(self, intervals):
+	"""
+	This is for a binary search problem that is FFFFTTT, and returns the first occurrence of T.
+	This is using the bisect module. 
+	"""
+    start_sorted=sorted((v[0],i) for i,v in enumerate(intervals))
+    ans=[]
+    for i,v in enumerate(intervals):
+        left_index=bisect.bisect_left(start_sorted,(v[1],))
+        ans.append(start_sorted[left_index][1] if left_index<len(intervals) else -1)
+    return ans
+
+"""
+
+"""
+
+def findRightInterval(self, intervals):
+	"""
+	This is for a binary search problem that is FFFFTTT, and returns the first occurrence of T.
+	This is using binary search algorithm. 
+	"""
+    start_sorted=sorted((v[0],i) for i,v in enumerate(intervals))
+    start_sorted+=[(float('inf'),len(intervals))]
+    def possible(val,target):
+        return start_sorted[val][0]>=target
+    def binary_search(target):
+        lo,hi=0,len(intervals)
+        while lo < hi:
+            mid = lo+hi>>1
+            if not possible(mid,target):
+                lo=mid+1
+            else:
+                hi=mid
+        return lo
+    ans=[]
+    for s,e in intervals:
+        left_index=binary_search(e)
+        ans.append(start_sorted[left_index][1] if left_index<len(intervals) else -1)
+    return ans
+
+"""
+Case #2 is basically if you have TTTTFFFF instead and you want to return the last true statement
+
+"""
+
+"""
+Dialogue:
+So what is the main two types of binary search problems to know.  There is basic idea, 
+So consider the problem with the magnetic force between two balls. 
+In this problem you know you are given positions and a specific number of balls.  
+then with a given force you check how many balls you can have in the available positions. 
+then if the number of balls is greater it is True
+so we say for this monotonically decreaseing function simply because as force increases the number of balls
+decreases.
+So we have that , at this force we have 10,8,6,5,3,2,1
+and maybe m=3,  so we need to use at least 3 balls so to say it is possible.  
+notice it is true if the number of balls placed is greater than the cutoff,  so I think this will give an array of 
+TTTTFFF, so we want to return the first occurrence of T scanning from hi to lo or in other words
+return the last occurrence of T from lo to hi scan. 
+Depending which direction relative you scan from. 
+
+What is the other occurrence I would say it is this switch these around and consider
+FFFTTTT, now the goal is to return the first occurence of T when scanning from lo to hi
+
+So binary search can be broken down into basically two templates is what I learned by studying Alex.  
+So think about this it is either TTTTTFFF or FFFFTTTT.  and you need to always return the first or last occurence of T. 
+Another way to think once of these is in terms of bisect module as well.  
+I will implement that afterwards to reduce my work but I need to make sure I understand the general principle of binary search first though.
+
+
+
+"""
+
 if __name__=='__main__':
 	A=[2, 3, 4, 4, 5, 8, 12, 36, 36, 36, 85, 89, 96]
 	print(find_left(5,A))
