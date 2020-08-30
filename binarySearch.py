@@ -102,7 +102,7 @@ def findRightInterval(self, intervals):
     start_sorted+=[(float('inf'),len(intervals))]
     def possible(val,target):
         return start_sorted[val][0]>=target
-    def binary_search(target):
+    def binary_search(target):f jkk
         lo,hi=0,len(intervals)
         while lo < hi:
             mid = lo+hi>>1
