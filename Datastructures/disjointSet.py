@@ -1,10 +1,14 @@
 """
 https://cp-algorithms.com/data_structures/disjoint_set_union.html
-
+disjoint set datastructure also called union find datastructure
 """
 
 class DSU:
     def __init__(self,n):
+        """
+        Args:
+            n(int): The number of nodes or vertices in the graph.
+        """
         self.parent=list(range(n+1))
         self.size=[1]*(n+1)
     
@@ -34,4 +38,13 @@ class DSU:
             self.parent[y]=x
             return True
         return False
+
+    def size(self,x):
+        """
+        Args:
+            x(int): A node values
+        Return:
+            int:  Returns the size of the disjoint set that the node belongs into.
+        """
+        return self.size[self.parent[x]]
 
