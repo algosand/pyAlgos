@@ -7,7 +7,9 @@ from disjointSet import DSU
 
 def kruskal(n, edges):
 	"""
-	Finds the minimum spanning tree and returns the total weight of it. 
+	Finds the minimum spanning tree and returns the total weight of it.  A useful implementation when
+	it doesn't matter what the starting node is just to find a minimum spanning tree by choosing lowest weight
+	at start and connecting nodes together.  
 
 	Args:
 		n(int): The number of nodes in the graph
