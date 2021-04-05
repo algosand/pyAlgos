@@ -1,5 +1,6 @@
 # Algorithms in Python
-I will update later, right now I'm just accumulating algorithms that I learn.  Eventually if I get a lot I should create a table of contents.  
+I might update this and improve it, but it just contains interestind datastructures/algorithms in python language.
+Currently I am coding in Go/C++ more frequently but sometimes will code in python as well.  So this will be updated sometimes.  
 
 # Algorithm Resources 
 https://www.algorithm-archive.org/contents/quantum_information/quantum_information.html?q=
